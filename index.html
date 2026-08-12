@@ -271,7 +271,9 @@
   //  최신 소식 / 프로모션 링크 목록은 구글 시트 전용 탭에서
   //  불러옵니다. 시트에 "가장 나중에 추가한 행"이 맨 위에 오도록
   //  순서를 뒤집어 보여줍니다 (= 새 글을 시트 맨 아래에 추가하면
-  //  자동으로 목록 맨 위에 뜸). 번호는 자동으로 매겨집니다.
+  //  자동으로 목록 맨 위에 뜸). 번호는 시트 맨 위 행(가장 오래된
+  //  글)이 1번이 되는 고유번호라, 새 글이 추가돼도 기존 글의
+  //  번호는 바뀌지 않습니다.
   //  사용하는 열: 제목, 설명, 링크
   // ============================================================
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=22051895&single=true&output=csv";
@@ -288,11 +290,11 @@
       list.innerHTML = '<div class="empty-note">아직 등록된 소식이 없어요. 곧 업데이트할게요!</div>';
       return;
     }
-    list.innerHTML = rows.map(function(row, i){
+    list.innerHTML = rows.map(function(row){
       const title = escapeHtml(row['제목'] || '(제목 없음)');
       const desc = escapeHtml(row['설명'] || '');
       const link = row['링크'] || '#';
-      const num = i < 9 ? '0' + (i + 1) : String(i + 1);
+      const num = row.__num < 10 ? '0' + row.__num : String(row.__num);
       return (
         '<a class="link-card" href="' + link + '" target="_blank" rel="noopener">' +
           '<div class="link-main">' +
@@ -314,9 +316,13 @@
       const res = await fetch(bustCacheUrl, { cache: 'no-store' });
       const csvText = await res.text();
       const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-      const rows = (parsed.data || []).filter(function(row){
+      const filtered = (parsed.data || []).filter(function(row){
         return (row['제목'] || '').toString().trim() !== '';
-      }).reverse();
+      });
+      // 번호는 시트의 절대 위치를 기준으로 매겨서(맨 아래 행=1번),
+      // 새 글이 추가돼도 기존 글의 번호는 바뀌지 않도록 합니다.
+      filtered.forEach(function(row, idx){ row.__num = idx + 1; });
+      const rows = filtered.reverse();
       renderLatestLinks(rows);
     }catch(err){
       document.getElementById('latest-links').innerHTML = '<div class="empty-note">소식을 불러오지 못했어요. 잠시 후 새로고침해주세요.</div>';
