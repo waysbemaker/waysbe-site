@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Waysbe Starter — 3D프린팅 처음 시작하기</title>
+<title>Waysbe Maker — 웨이즈비메이커 링크 모음</title>
+<meta name="description" content="Waysbe Maker의 인스타그램, 유튜브, Gumroad, MakerWorld, 3D프린팅 가이드까지 한번에 모아둔 링크 페이지">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -41,1200 +42,228 @@
     * { animation: none !important; transition: none !important; }
   }
 
-  h1,h2,h3, .brand, .layer-num{ font-family:'Space Grotesk', sans-serif; }
+  h1,h2,h3, .brand{ font-family:'Space Grotesk', sans-serif; }
   .mono{ font-family:'JetBrains Mono', monospace; letter-spacing: 0.02em; }
-  a { color: inherit; }
 
-  /* ---------- Nav ---------- */
-  nav{
-    max-width: 980px;
+  a { text-decoration: none; color: inherit; }
+
+  .wrap{
+    max-width: 520px;
     margin: 0 auto;
-    padding: 24px 24px 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .brand{ font-size: 18px; font-weight: 700; display:flex; align-items:center; gap:8px; cursor:pointer; }
-  .brand-dot{ width:8px; height:8px; background:var(--ember); border-radius:50%; display:inline-block; }
-  .nav-link{
-    text-decoration:none; font-size:14px; color:var(--ink-soft);
-    border-bottom: 1px solid transparent; padding-bottom:2px;
-    transition: border-color .15s ease, color .15s ease;
-  }
-  .nav-link:hover{ color:var(--ink); border-color: var(--ink); }
-
-  /* ---------- Views ---------- */
-  .view{ display:none; }
-  .view.active{ display:block; animation: fadeIn .35s ease; }
-  @keyframes fadeIn{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:translateY(0);} }
-
-  /* ---------- Hero (home view) ---------- */
-  .hero{ max-width: 980px; margin: 0 auto; padding: 64px 24px 8px; }
-  .eyebrow{
-    font-size:13px; color: var(--ember); font-weight:600;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    margin-bottom: 18px; display:flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--ember); display:inline-block; }
-
-  h1{
-    font-size: clamp(32px, 5.6vw, 54px);
-    line-height: 1.1; font-weight: 700; margin: 0 0 22px; letter-spacing: -0.01em;
-  }
-  h1 .accent{ color: var(--ember); position:relative; }
-
-  .sub{ font-size: 17px; color: var(--ink-soft); max-width: 560px; line-height:1.65; margin: 0 0 8px; }
-
-  .stat-row{ display:flex; gap: 36px; flex-wrap:wrap; padding: 28px 0 48px; border-top: 1px solid var(--line); }
-  .stat{ display:flex; flex-direction:column; gap:4px; }
-  .stat b{ font-family:'Space Grotesk', sans-serif; font-size: 22px; }
-  .stat span{ font-size: 12.5px; color: var(--ink-soft); }
-
-  /* ---------- Home category grid ---------- */
-  .web-wrap{
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px 0;
-  }
-  .web-svg{ width:100%; height:auto; display:block; }
-  .web-line{
-    fill:none;
-    stroke: var(--line);
-    stroke-width: 1.4;
-  }
-  .web-line.hot{ stroke: var(--ember); stroke-opacity: 0.55; }
-  .web-line.moss{ stroke: var(--moss); stroke-opacity: 0.45; }
-  .web-node{ cursor:pointer; }
-  .web-node circle{
-    fill: var(--dot, var(--paper-raised));
-    stroke: var(--dot, var(--ink));
-    stroke-width: 1.3;
-    transition: fill .15s ease, stroke .15s ease, r .15s ease;
-  }
-  .web-node:hover circle, .web-node:focus-visible circle{
-    fill: var(--ink);
-    stroke: var(--ink);
-  }
-  .web-node:hover text:not(.web-node-num), .web-node:focus-visible text:not(.web-node-num){
-    fill: var(--ink);
-  }
-  .web-node-num{
-    font-family:'JetBrains Mono', monospace !important;
-    font-size: 13px !important;
-    font-weight: 500 !important;
-    fill: var(--ink-soft) !important;
-    letter-spacing: 0.02em;
-  }
-  .web-node:focus-visible{ outline: none; }
-  .web-node text{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 30px;
-    fill: var(--ink);
-    font-weight: 700;
-    transition: fill .15s ease;
+    padding: 48px 20px 64px;
   }
 
-  .home-grid{
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 24px 24px 32px;
-    border-top: 1px solid var(--line);
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .cat-card{
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 26px 24px;
-    cursor:pointer;
-    text-align:left;
+  /* ---- profile header ---- */
+  .profile{
     display:flex;
     flex-direction:column;
-    gap: 14px;
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    position:relative;
-    min-height: 168px;
-  }
-  .cat-card:hover, .cat-card:focus-visible{
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(28,27,26,0.08);
-    border-color: var(--ink);
-  }
-  .cat-card.wide{ grid-column: span 2; }
-  .cat-top{ display:flex; align-items:center; justify-content:space-between; }
-  .cat-num{
-    font-size:12px; color: var(--ink-soft);
-    background: var(--paper); border:1px solid var(--line);
-    border-radius: 20px; padding: 4px 11px;
-  }
-  .cat-badge{
-    font-size:11px; font-weight:700; color: var(--moss);
-    background: var(--moss-soft); padding:3px 9px; border-radius:6px;
-  }
-  .cat-arrow{
-    width:34px; height:34px; border-radius:50%;
-    border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    transition: background .18s ease, border-color .18s ease, transform .18s ease;
-    flex-shrink:0;
-  }
-  .cat-card:hover .cat-arrow{ background: var(--ink); border-color:var(--ink); transform: rotate(45deg); }
-  .cat-card:hover .cat-arrow svg{ stroke: var(--paper); }
-  .cat-arrow svg{ width:15px; height:15px; stroke: var(--ink); transition: stroke .18s ease; }
-  .cat-title{ font-size: 19px; font-weight:600; margin:0; line-height:1.35; }
-  .cat-hook{ font-size: 13.5px; color: var(--ink-soft); line-height:1.55; margin:0; }
-
-  @media (max-width: 640px){
-    .home-grid{ grid-template-columns: 1fr; }
-    .cat-card.wide{ grid-column: span 1; }
-  }
-
-  /* ---------- Detail view ---------- */
-  .detail-header{
-    max-width: 980px; margin: 0 auto; padding: 24px 24px 0;
-  }
-  .back-btn{
-    display:inline-flex; align-items:center; gap:8px;
-    background:none; border:none; cursor:pointer;
-    font-family:'Inter', sans-serif; font-size:14px; color: var(--ink-soft);
-    padding: 8px 0; margin-bottom: 18px;
-    transition: color .15s ease;
-  }
-  .back-btn:hover{ color: var(--ink); }
-  .back-btn svg{ width:16px; height:16px; }
-
-  .detail-head{ display:flex; align-items:baseline; gap:14px; margin-bottom: 10px; }
-  .layer-num{
-    font-size:13px; color: var(--ink-soft); background: var(--paper-raised);
-    border:1px solid var(--line); border-radius: 20px; padding: 5px 12px; white-space:nowrap;
-  }
-  .layer-title{ font-size: 28px; font-weight:600; margin:0; }
-  .layer-desc{ color: var(--ink-soft); font-size:15px; margin: 14px 0 32px; max-width: 560px; line-height:1.6; }
-
-  .detail-body{ max-width: 980px; margin: 0 auto; padding: 0 24px 90px; }
-
-  .card-grid{
-    display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px;
-  }
-  .g-card{
-    background: var(--paper-raised); border:1px solid var(--line); border-radius: 14px;
-    padding: 20px; text-decoration:none; color:var(--ink);
-    display:flex; flex-direction:column; gap: 14px;
-    transition: border-color .15s ease, transform .15s ease;
-  }
-  .g-card:hover{ border-color: var(--ink); transform: translateY(-3px); }
-  .g-tag{
-    font-size:11px; font-weight:600; color: var(--moss); background: var(--moss-soft);
-    padding: 4px 9px; border-radius: 6px; width:fit-content; letter-spacing:0.02em;
-  }
-  .g-card h4{ margin:0; font-size:16px; line-height:1.4; }
-  .g-card p{ margin:0; font-size:13px; color: var(--ink-soft); line-height:1.55; }
-  .g-play{ margin-top:auto; font-size:12.5px; color: var(--ink-soft); display:flex; align-items:center; gap:6px; }
-  .g-play svg{ width:13px; height:13px; }
-
-  .g-detail-toggle{
-    background:none; border:none; padding:0; margin:-6px 0 0;
-    font-family:'Inter', sans-serif; font-size:12.5px; font-weight:600;
-    color: var(--ember); cursor:pointer; text-align:left;
-    display:flex; align-items:center; gap:5px;
-  }
-  .g-detail-toggle svg{ width:11px; height:11px; flex-shrink:0; transition: transform .2s ease; }
-  .g-detail-toggle.open svg{ transform: rotate(180deg); }
-  .g-detail-body{
-    display:grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease;
-  }
-  .g-detail-body.open{ grid-template-rows: 1fr; }
-  .g-detail-body-inner{ overflow:hidden; }
-  .g-detail-body-inner p{ margin: 2px 0 0; font-size:13px; color: var(--ink-soft); line-height:1.6; }
-
-  .empty-state{
-    background: var(--paper-raised); border:1px dashed var(--line); border-radius:14px;
-    padding: 40px 24px; text-align:center; color: var(--ink-soft); font-size:14px; line-height:1.7;
-  }
-  .loading-note{ color: var(--ink-soft); font-size:14px; padding: 20px 0; }
-
-  .subtab-bar{ display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 28px; }
-  .subtab-btn{
-    font-family:'Inter', sans-serif; font-size:13.5px; font-weight:600; color: var(--ink-soft);
-    background: var(--paper-raised); border:1px solid var(--line); border-radius: 20px;
-    padding: 9px 16px; cursor:pointer; transition: all .15s ease; white-space:nowrap;
-  }
-  .subtab-btn:hover{ color: var(--ink); border-color: var(--ink); }
-  .subtab-btn.active{ background: var(--ink); color: #fff; border-color: var(--ink); }
-  .subtab-panel{ display:none; }
-  .subtab-panel.active{ display:block; }
-  .subtab-hint{ color: var(--ink-soft); font-size:14px; padding: 8px 0 20px; }
-  .load-more-btn{
-    display:block;
-    margin: 24px auto 0;
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    color: var(--ink);
-    font-family:'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 28px;
-    border-radius: 10px;
-    cursor:pointer;
-    transition: border-color .15s ease, transform .15s ease;
-  }
-  .load-more-btn:hover{ border-color: var(--ink); transform: translateY(-2px); }
-
-  /* ---------- Product cards ---------- */
-  .product-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-  .p-card{
-    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 16px;
-    overflow:hidden; display:flex; flex-direction:column;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .p-card:hover{ transform: translateY(-4px); box-shadow: 0 14px 30px rgba(28,27,26,0.08); }
-  .p-card-top{ padding: 20px 20px 0; }
-  .p-status{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
-  .p-free{ font-size:11px; font-weight:700; color: var(--ember); background: var(--ember-soft); padding:4px 10px; border-radius:6px; letter-spacing:0.02em; }
-  .p-version{ font-size:11.5px; color: var(--ink-soft); }
-  .p-card h4{ font-size: 18px; margin: 0 0 8px; }
-  .p-card p{ font-size: 13.5px; color: var(--ink-soft); line-height:1.6; margin: 0 0 18px; }
-  .p-spool{ margin: 0 20px 20px; border-top: 1px dashed var(--line); padding-top: 16px; display:flex; align-items:center; justify-content:space-between; }
-  .p-price{ font-family:'JetBrains Mono', monospace; font-size: 20px; font-weight:500; }
-  .p-price .strike{ font-size:13px; color: var(--ink-soft); text-decoration: line-through; margin-right:8px; font-weight:400; }
-  .p-buy{
-    font-size:13px; font-weight:600; background: var(--ink); color: var(--paper);
-    padding: 9px 16px; border-radius: 8px; text-decoration:none;
-    display:inline-flex; align-items:center; gap:6px; transition: transform .15s ease;
-  }
-  .p-buy:hover{ transform: translateX(2px); }
-
-  /* ---------- Footer ---------- */
-  footer{ max-width: 980px; margin: 0 auto; padding: 24px 24px 70px; border-top: 1px solid var(--line); }
-  .footer-platforms{
-    padding-bottom: 32px;
+    align-items:center;
+    text-align:center;
     margin-bottom: 32px;
-    border-bottom: 1px solid var(--line);
   }
-  .footer-platforms-label{
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 0 0 16px;
+  .avatar{
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ember), var(--moss));
+    color: #fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 26px; font-weight:700;
+    font-family:'Space Grotesk', sans-serif;
+    box-shadow: 0 6px 18px rgba(28,27,26,0.15);
+    margin-bottom: 14px;
   }
-  .footer-links{ display:flex; gap: 20px; flex-wrap:wrap; }
-  .platform-item{ display:flex; flex-direction:column; gap: 10px; max-width:220px; }
-  .platform-caption{ font-size: 12.5px; color: var(--ink-soft); line-height:1.5; margin:0; padding: 0 2px; }
-  .footer-links a{
-    text-decoration:none;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
+  .profile h1{
+    font-size: 24px; margin: 0 0 6px;
+  }
+  .profile p{
+    margin:0; color: var(--ink-soft); font-size: 14.5px; line-height:1.5;
+    max-width: 360px;
+  }
+
+  /* ---- fixed core links ---- */
+  .core-links{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .core-link{
     background: var(--paper-raised);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 10px 18px;
+    border-radius: 14px;
+    padding: 14px 16px;
     display:flex;
     align-items:center;
-    gap: 9px;
-    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+    gap: 10px;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   }
-  .footer-links a svg{ width:17px; height:17px; flex-shrink:0; }
-  .footer-links a:hover{
-    border-color: var(--ink);
+  .core-link:hover{
     transform: translateY(-2px);
-    background: var(--ink);
-    color: var(--paper);
+    box-shadow: 0 8px 20px rgba(28,27,26,0.08);
+    border-color: var(--ember);
   }
-  .footer-grid{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; }
-  .footer-note{ color: var(--ink-soft); font-size: 13.5px; line-height:1.7; max-width: 400px; }
+  .core-link svg{ width:20px; height:20px; flex-shrink:0; color: var(--ember); }
+  .core-link .core-label{ font-weight:600; font-size: 14.5px; }
+  .core-link .core-caption{ font-size: 11.5px; color: var(--ink-soft); margin-top:1px; }
+  .core-link.wide{ grid-column: 1 / -1; background: var(--moss-soft); border-color: var(--moss-soft); }
+  .core-link.wide svg{ color: var(--moss); }
 
-  :focus-visible{ outline: 2px solid var(--ember); outline-offset: 2px; }
+  /* ---- latest links section ---- */
+  .section-label{
+    display:flex; align-items:center; gap:8px;
+    font-size: 13px; font-weight:600; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing:0.06em;
+    margin: 0 0 14px 2px;
+  }
+  .section-label .dot{ width:7px; height:7px; border-radius:50%; background: var(--ember); }
+
+  .link-list{
+    display:flex; flex-direction:column; gap: 10px;
+  }
+  .link-card{
+    background: var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display:flex; align-items:center; justify-content:space-between; gap: 12px;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .link-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(28,27,26,0.08);
+    border-color: var(--ember);
+  }
+  .link-card .link-text{ min-width:0; }
+  .link-card .link-title{ font-weight:600; font-size: 15px; margin:0 0 3px; }
+  .link-card .link-desc{ font-size: 12.5px; color: var(--ink-soft); margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .link-card .link-arrow{ flex-shrink:0; color: var(--ember); }
+  .link-card .link-arrow svg{ width:18px; height:18px; }
+
+  .empty-note{
+    text-align:center; color: var(--ink-soft); font-size:13.5px;
+    padding: 24px 0;
+  }
+
+  footer{
+    text-align:center; margin-top: 48px;
+    font-size: 12.5px; color: var(--ink-soft);
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="brand" onclick="goHome()"><span class="brand-dot"></span>Waysbe Starter</div>
-  <a class="nav-link" href="#l09" onclick="showView('l09');return false;">진행중인 이벤트 →</a>
-</nav>
+<div class="wrap">
 
-<!-- ============ HOME VIEW ============ -->
-<div class="view active" id="view-home">
-  <header class="hero">
-    <div class="eyebrow">3D프린터 처음 켠 날부터 보는 무료 가이드</div>
-    <h1>3D프린터 샀는데,<br>뭐부터 봐야 할지<br><span class="accent">모르겠다면.</span></h1>
-    <p class="sub">메이커 웨이즈비가 3D프린터 처음 켰던 날의 막막함을 그대로 기억하며 만든 입문 가이드예요. 궁금한 카테고리를 하나 골라서 들어가보세요.</p>
-  </header>
-
-  <div class="web-wrap">
-    <svg class="web-svg" viewBox="-10 30 750 540" xmlns="http://www.w3.org/2000/svg">
-      <!-- ring connections (octagon) -->
-      <path class="web-line" d="M400,150 L520,200"></path>
-      <path class="web-line" d="M520,200 L570,320"></path>
-      <path class="web-line" d="M570,320 L520,440"></path>
-      <path class="web-line" d="M520,440 L400,490"></path>
-      <path class="web-line" d="M400,490 L280,440"></path>
-      <path class="web-line" d="M280,440 L230,320"></path>
-      <path class="web-line" d="M230,320 L280,200"></path>
-      <path class="web-line" d="M280,200 L400,150"></path>
-
-      <!-- star chords, woven through the middle ({8/3} octagram) -->
-      <path class="web-line hot" d="M400,150 L520,440"></path>
-      <path class="web-line moss" d="M520,200 L400,490"></path>
-      <path class="web-line hot" d="M570,320 L280,440"></path>
-      <path class="web-line moss" d="M520,440 L230,320"></path>
-      <path class="web-line hot" d="M400,490 L280,200"></path>
-      <path class="web-line moss" d="M400,150 L280,440"></path>
-      <path class="web-line hot" d="M520,200 L230,320"></path>
-      <path class="web-line moss" d="M570,320 L280,200"></path>
-
-      <!-- nodes -->
-      <g class="web-node" style="--dot:#F3B79D" onclick="showView('l01')" onkeydown="if(event.key==='Enter')showView('l01')" tabindex="0" role="button" aria-label="L01 3D프린팅으로 이동">
-        <circle cx="400" cy="150" r="8.5"></circle>
-        <text class="web-node-num" x="400" y="130" text-anchor="middle">L01</text>
-        <text x="400" y="80" text-anchor="middle">3D프린팅</text>
-      </g>
-      <g class="web-node" style="--dot:#A9C7DE" onclick="showView('l02')" onkeydown="if(event.key==='Enter')showView('l02')" tabindex="0" role="button" aria-label="L02 3D모델링으로 이동">
-        <circle cx="520" cy="200" r="8.5"></circle>
-        <text class="web-node-num" x="520" y="180" text-anchor="middle">L02</text>
-        <text x="572" y="186" text-anchor="start">3D모델링</text>
-      </g>
-      <g class="web-node" style="--dot:#E4C77A" onclick="showView('l03')" onkeydown="if(event.key==='Enter')showView('l03')" tabindex="0" role="button" aria-label="L03 후가공으로 이동">
-        <circle cx="570" cy="320" r="8.5"></circle>
-        <text class="web-node-num" x="570" y="300" text-anchor="middle">L03</text>
-        <text x="604" y="330" text-anchor="start">후가공</text>
-      </g>
-      <g class="web-node" style="--dot:#C7B8DE" onclick="showView('l04')" onkeydown="if(event.key==='Enter')showView('l04')" tabindex="0" role="button" aria-label="L04 기술을 더한 프로젝트로 이동">
-        <circle cx="520" cy="440" r="8.5"></circle>
-        <text class="web-node-num" x="520" y="418" text-anchor="middle">L04</text>
-        <text x="540" y="505" text-anchor="start">기술 프로젝트</text>
-      </g>
-      <g class="web-node" style="--dot:#8FC1BE" onclick="showView('l05')" onkeydown="if(event.key==='Enter')showView('l05')" tabindex="0" role="button" aria-label="L05 다양한 재료로 이동">
-        <circle cx="400" cy="490" r="8.5"></circle>
-        <text class="web-node-num" x="400" y="468" text-anchor="middle">L05</text>
-        <text x="400" y="558" text-anchor="middle">다양한 재료</text>
-      </g>
-      <g class="web-node" style="--dot:#E3A9B0" onclick="showView('l06')" onkeydown="if(event.key==='Enter')showView('l06')" tabindex="0" role="button" aria-label="L06 메이커 웨이즈비 작업실로 이동">
-        <circle cx="280" cy="440" r="8.5"></circle>
-        <text class="web-node-num" x="280" y="418" text-anchor="middle">L06</text>
-        <text x="260" y="505" text-anchor="end">작업실</text>
-      </g>
-      <g class="web-node" style="--dot:#A8C3B4" onclick="showView('l07')" onkeydown="if(event.key==='Enter')showView('l07')" tabindex="0" role="button" aria-label="L07 어린이·청소년 교육 프로그램으로 이동">
-        <circle cx="230" cy="320" r="8.5"></circle>
-        <text class="web-node-num" x="230" y="300" text-anchor="middle">L07</text>
-        <text x="196" y="330" text-anchor="end">교육 프로그램</text>
-      </g>
-      <g class="web-node" style="--dot:#C9A66B" onclick="showView('l08')" onkeydown="if(event.key==='Enter')showView('l08')" tabindex="0" role="button" aria-label="L08 3D프린팅 관련 기술 동향 뉴스로 이동">
-        <circle cx="280" cy="200" r="8.5"></circle>
-        <text class="web-node-num" x="280" y="180" text-anchor="middle">L08</text>
-        <text x="228" y="186" text-anchor="end">기술뉴스</text>
-      </g>
-    </svg>
+  <div class="profile">
+    <div class="avatar">WM</div>
+    <h1>Waysbe Maker</h1>
+    <p>3D프린팅 메이커 웨이즈비예요. 아래에서 원하는 링크를 눌러 들어가세요 🙂</p>
   </div>
 
-  <div class="home-grid">
-    <button class="cat-card" onclick="showView('l01')">
-      <div class="cat-top"><span class="cat-num mono">L01</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">3D프린팅이 처음이야?</h3>
-      <p class="cat-hook">일단 이거 봐! 박스 열고 무엇을 해야할지 모르겠는 프린이들을 위해.</p>
-    </button>
+  <div class="core-links">
+    <a class="core-link" href="https://www.instagram.com/waysbe_maker/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>
+      <div>
+        <div class="core-label">Instagram</div>
+        <div class="core-caption">일상 & 신제품 소식</div>
+      </div>
+    </a>
+    <a class="core-link" href="https://youtube.com/@waysbe_maker_youtube" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.5 9.3v5.4l4.7-2.7z" fill="currentColor" stroke="none"></path></svg>
+      <div>
+        <div class="core-label">YouTube</div>
+        <div class="core-caption">튜토리얼 영상</div>
+      </div>
+    </a>
+    <a class="core-link" href="https://alwaysbe.gumroad.com/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2-5h14l2 5"></path><path d="M3 9h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="M8 13a3 3 0 0 0 6 0"></path></svg>
+      <div>
+        <div class="core-label">Gumroad</div>
+        <div class="core-caption">무료·유료 파일</div>
+      </div>
+    </a>
+    <a class="core-link" href="https://makerworld.com/ko/@waysbe" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path><path d="M12 13v8"></path></svg>
+      <div>
+        <div class="core-label">MakerWorld</div>
+        <div class="core-caption">출력 파일 모델</div>
+      </div>
+    </a>
+    <a class="core-link wide" href="./starter/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <div>
+        <div class="core-label">Waysbe Starter — 3D프린팅 처음 시작하기</div>
+        <div class="core-caption">3D프린터 처음 만난 분들을 위한 가이드</div>
+      </div>
+    </a>
+  </div>
 
-    <button class="cat-card" onclick="showView('l02')">
-      <div class="cat-top"><span class="cat-num mono">L02</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">3D모델링이 처음이야?</h3>
-      <p class="cat-hook">3D모델링 전혀 할 줄 몰라도 시작부터 즐길 수 있게! 바로 적용해서 프린팅해요~</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l03')">
-      <div class="cat-top"><span class="cat-num mono">L03</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">후가공이 처음이야?</h3>
-      <p class="cat-hook">출력면 사포질부터 도색까지! 후가공이 작품의 최종 퀄리티를 결정합니다.</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l04')">
-      <div class="cat-top"><span class="cat-num mono">L04</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">기술을 더한 프로젝트</h3>
-      <p class="cat-hook">그림 보고 바로 회로 그려서 프린팅에 적용, 키트를 집에 배달해요! 키트에 맞는 모델링도 같이 해보자구요!</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l05')">
-      <div class="cat-top"><span class="cat-num mono">L05</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">다양한 재료로 경험해보기</h3>
-      <p class="cat-hook">다양한 종류의 3D프린팅을 체험해 보자구요! 또 3D프린팅과 다른 재료의 만남을 경험해요~</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l06')">
-      <div class="cat-top"><span class="cat-num mono">L06</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">메이커 웨이즈비 작업실</h3>
-      <p class="cat-hook">부딪치며 성장하는 메이커의 일상을 보여드려요! 함께 성장해 나가자구요!</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l07')">
-      <div class="cat-top"><span class="cat-num mono">L07</span><span class="cat-badge">준비중</span></div>
-      <h3 class="cat-title">어린이·청소년 교육 프로그램</h3>
-      <p class="cat-hook">다음 세대 메이커를 위해 준비하고 있어요.</p>
-    </button>
-
-    <button class="cat-card" onclick="showView('l08')">
-      <div class="cat-top"><span class="cat-num mono">L08</span><span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span></div>
-      <h3 class="cat-title">3D프린팅 관련 기술 동향 뉴스</h3>
-      <p class="cat-hook">세상을 바꾸는 3D프린팅 관련 뉴스들을 모았어요!</p>
-    </button>
+  <div class="section-label"><span class="dot"></span>최신 소식 & 링크</div>
+  <div class="link-list" id="latest-links">
+    <div class="empty-note">불러오는 중…</div>
   </div>
 
   <footer>
-    <div class="footer-platforms">
-      <p class="footer-platforms-label">더 많은 플랫폼에서 메이커 웨이즈비를 만나보고 싶다면?</p>
-      <div class="footer-links">
-        <div class="platform-item">
-          <a href="https://www.instagram.com/waysbe_maker/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>
-            Instagram
-          </a>
-          <p class="platform-caption">가장 최근 활동 업로드</p>
-        </div>
-        <div class="platform-item">
-          <a href="https://youtube.com/@waysbe_maker_youtube" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.5 9.3v5.4l4.7-2.7z" fill="currentColor" stroke="none"></path></svg>
-            YouTube
-          </a>
-          <p class="platform-caption">쉽고 친절한 튜토리얼을 영상과 함께</p>
-        </div>
-        <div class="platform-item">
-          <a href="https://alwaysbe.gumroad.com/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2-5h14l2 5"></path><path d="M3 9h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="M8 13a3 3 0 0 0 6 0"></path></svg>
-            Gumroad
-          </a>
-          <p class="platform-caption">별도 가입 없이, Waysbe Maker의 무료·유료 파일 다운로드</p>
-        </div>
-        </a>
-      </div>
-    </div>
-    <div class="footer-grid">
-      <p class="footer-note">Waysbe Starter는 3D프린팅을 처음 만나는 사람을 위한 가이드예요. 여기서 배운 뒤엔, 다음 시작하는 사람에게 이 페이지를 넘겨주세요.</p>
-    </div>
+    Waysbe Maker · 3D프린팅 메이커
   </footer>
-</div>
 
-<!-- ============ DETAIL VIEW TEMPLATE FUNCTION RENDERS THESE ============ -->
-
-<div class="view" id="view-l01">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L01</span><h2 class="layer-title">3D프린팅이 처음이야?</h2></div>
-    <p class="layer-desc">일단 이거 봐! 박스 열고 무엇을 해야할지 모르겠는 프린이들을 위해.</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l01" class="dynamic-content" style="display:none; margin-bottom:28px;"></div>
-    <div class="subtab-bar">
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l01','l01-1', this)">박스에서 이제 막 3D프린터를 꺼냈다면</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l01','l01-2', this)">Bambulab Studio 설정값 꿀팁</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l01','l01-3', this)">문제해결 + 유지 및 관리</button>
-    </div>
-    <p class="subtab-hint">위에서 궁금한 주제를 하나 골라보세요 👆</p>
-    <div id="dynamic-l01-1" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l01-2" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l01-3" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l02">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L02</span><h2 class="layer-title">3D모델링이 처음이야?</h2></div>
-    <p class="layer-desc">3D모델링 전혀 할 줄 몰라도 시작부터 즐길 수 있게! 바로 적용해서 프린팅해요~</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l02" class="dynamic-content" style="display:none; margin-bottom:28px;"></div>
-    <div class="subtab-bar">
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l02','l02-1', this)">3D모델링이 처음이라면? AI와 함께 시작해봐요!</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l02','l02-2', this)">도형 맞추기로 초등학생도 할 수 있는 3D모델링 툴, Tinkercad</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l02','l02-3', this)">패드로 클레이를 만지듯이 모델링을 하는 Nomad Sculpt</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l02','l02-4', this)">치수가 정확해야 한다면, 생활용품 만들기 끝판왕, 퓨전360</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l02','l02-5', this)">알아두면 좋은 Blender 꿀팁</button>
-    </div>
-    <p class="subtab-hint">위에서 궁금한 주제를 하나 골라보세요 👆</p>
-    <div id="dynamic-l02-1" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l02-2" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l02-3" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l02-4" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l02-5" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l03">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L03</span><h2 class="layer-title">후가공이 처음이야?</h2></div>
-    <p class="layer-desc">출력면 사포질부터 도색까지! 후가공이 작품의 최종 퀄리티를 결정합니다.</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l03" class="dynamic-content" style="display:none; margin-bottom:28px;"></div>
-    <div class="subtab-bar">
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l03','l03-1', this)">표면을 매끄럽게</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l03','l03-2', this)">도색의 기초</button>
-    </div>
-    <p class="subtab-hint">위에서 궁금한 주제를 하나 골라보세요 👆</p>
-    <div id="dynamic-l03-1" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l03-2" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l04">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L04</span><h2 class="layer-title">기술을 더한 프로젝트</h2></div>
-    <p class="layer-desc">그림 보고 바로 회로 그려서 프린팅에 적용, 키트를 집에 배달해요! 키트에 맞는 모델링도 같이 해보자구요!</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l04" class="dynamic-content" style="display:none; margin-bottom:28px;"></div>
-    <div class="subtab-bar">
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l04','l04-1', this)">PCB 활용 회로 넣기</button>
-      <button type="button" class="subtab-btn" onclick="switchSubTab('l04','l04-2', this)">AIoT 지능형 사물인터넷</button>
-    </div>
-    <p class="subtab-hint">위에서 궁금한 주제를 하나 골라보세요 👆</p>
-    <div id="dynamic-l04-1" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-    <div id="dynamic-l04-2" class="dynamic-content subtab-panel"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l05">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L05</span><h2 class="layer-title">다양한 재료로 경험해보기</h2></div>
-    <p class="layer-desc">다양한 종류의 3D프린팅을 체험해 보자구요! 또 3D프린팅과 다른 재료의 만남을 경험해요~</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l05" class="dynamic-content"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l06">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L06</span><h2 class="layer-title">메이커 웨이즈비 작업실</h2></div>
-    <p class="layer-desc">부딪치며 성장하는 메이커의 일상을 보여드려요! 함께 성장해 나가자구요!</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l06" class="dynamic-content"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l07">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L07</span><h2 class="layer-title">어린이·청소년 교육 프로그램</h2></div>
-    <p class="layer-desc">다음 세대 메이커를 위해 준비하고 있어요.</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l07" class="dynamic-content"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l08">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L08</span><h2 class="layer-title">3D프린팅 관련 기술 동향 뉴스</h2></div>
-    <p class="layer-desc">세상을 바꾸는 3D프린팅 관련 뉴스들을 모았어요!</p>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l08" class="dynamic-content"><p class="loading-note">불러오는 중...</p></div>
-  </div>
-</div>
-
-<div class="view" id="view-l09">
-  <div class="detail-header">
-    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>전체 카테고리로</button>
-    <div class="detail-head"><span class="layer-num mono">L09</span><h2 class="layer-title">진행중인 이벤트</h2></div>
-  </div>
-  <div class="detail-body">
-    <div id="dynamic-l09" class="dynamic-content"><p class="loading-note">불러오는 중...</p></div>
-  </div>
 </div>
 
 <script>
-  const views = ['home','l01','l02','l03','l04','l05','l06','l07','l09','l08'];
-
-  function showView(name){
-    views.forEach(v => {
-      const el = document.getElementById('view-' + v);
-      if(el) el.classList.toggle('active', v === name);
-    });
-    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
-    if(location.hash !== '#' + name){
-      history.pushState({view:name}, '', name === 'home' ? location.pathname : '#' + name);
-    }
-  }
-
-  function goHome(){ showView('home'); }
-
-  window.addEventListener('popstate', (e) => {
-    const v = (e.state && e.state.view) || (location.hash ? location.hash.slice(1) : 'home');
-    showView(v);
-  });
-
-  // Deep-link on initial load
-  (function(){
-    const initial = location.hash ? location.hash.slice(1) : 'home';
-    if(views.includes(initial)) showView(initial);
-  })();
-
-  // ===================================================================
-  // Google Sheet content loading
-  //
-  // 1. Create a Google Sheet with these column headers (first row):
-  //    카테고리 | 태그 | 제목 | 설명 | 상세설명 | 링크 | 플랫폼 | 날짜
-  //
-  //    "상세설명"은 선택 항목이에요. 유튜브 영상이나 인스타 게시물 내용을
-  //    좀 더 길게 요약정리해서 적어두면, 카드의 "상세 설명 보기"를 눌렀을 때
-  //    펼쳐져서 보여줘요. 비워두면 그 카드엔 토글 버튼이 아예 안 보여요.
-  //    줄바꿈을 넣으면 그대로 줄바꿈되어 표시돼요.
-  //
-  // 2. "카테고리" values must exactly match one of these (lowercase):
-  //
-  //    L01~L04는 "페이지 자체"에 바로 걸 수도 있고, 세부 탭에 걸 수도
-  //    있어요. l01처럼 접미사 없이 적으면 L01 페이지 맨 위(탭 구분과
-  //    무관하게 항상 보이는 자리)에 뜨고, l01-1처럼 적으면 그 세부 탭을
-  //    눌렀을 때만 보여요. 둘 다 안 쓰고 싶으면 그냥 비워두면 돼요(자동
-  //    으로 숨겨짐).
-  //
-  //    L01(Bambu Lab이 처음이야?)
-  //      l01     L01 페이지 맨 위에 바로 표시 (탭 구분 없음)
-  //      l01-1  박스에서 이제 막 3D프린터를 꺼냈다면
-  //      l01-2  Bambulab Studio 설정값 꿀팁
-  //      l01-3  문제해결 + 유지 및 관리
-  //
-  //    L02(3D모델링이 처음이야?)
-  //      l02     L02 페이지 맨 위에 바로 표시 (탭 구분 없음)
-  //      l02-1  3D모델링이 처음이라면? AI와 함께 시작해봐요!
-  //      l02-2  도형 맞추기로 초등학생도 할 수 있는 3D모델링 툴, Tinkercad
-  //      l02-3  패드로 클레이를 만지듯이 모델링을 하는 Nomad Sculpt
-  //      l02-4  치수가 정확해야 한다면, 생활용품 만들기 끝판왕, 퓨전360
-  //      l02-5  알아두면 좋은 Blender 꿀팁
-  //
-  //    L03(후가공이 처음이야?)
-  //      l03     L03 페이지 맨 위에 바로 표시 (탭 구분 없음)
-  //      l03-1  표면을 매끄럽게
-  //      l03-2  도색의 기초
-  //
-  //    L04(종합 프로젝트)
-  //      l04     L04 페이지 맨 위에 바로 표시 (탭 구분 없음)
-  //      l04-1  PCB 활용 회로 넣기
-  //      l04-2  AIoT 지능형 사물인터넷
-  //
-  //    나머지는 예전과 동일하게 세부 탭 없이 그대로 써주세요.
-  //      l05    다양한 재료로 경험해보기
-  //      l06    메이커 웨이즈비 작업실
-  //      l07    어린이·청소년 교육 프로그램 (아직 내용 없으면 자동으로 "준비 중" 안내)
-  //      l09    진행중인 이벤트
-  //
-  //    l08(기술뉴스)은 이 시트가 아니라 아래 뉴스 피드 섹션에서 따로
-  //    자동으로 관리되니 시트에 안 적으셔도 돼요.
-  //
-  // 3. File > Share > Publish to web > select the sheet > CSV format > Publish
-  //    Paste that published CSV link below as SHEET_CSV_URL.
-  // ===================================================================
+  // ============================================================
+  //  최신 소식 / 프로모션 링크 목록은 구글 시트에서 불러옵니다.
+  //  waysbe_content_template 시트에서 "카테고리" 열 값이 'm' 인
+  //  행들을 시트에 적힌 순서 그대로(위에서 아래) 보여줍니다.
+  //  → 순서를 바꾸고 싶으면 시트에서 행을 드래그해서 옮기면 됩니다.
+  //  사용하는 열: 카테고리(=m), 제목, 설명, 링크
+  // ============================================================
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=1563310562&single=true&output=csv";
-  const PAGE_SIZE = 12;
-  const CATEGORY_KEYS = [
-    'l01','l01-1','l01-2','l01-3',
-    'l02','l02-1','l02-2','l02-3','l02-4','l02-5',
-    'l03','l03-1','l03-2',
-    'l04','l04-1','l04-2',
-    'l05','l06','l07','l09'
-  ];
-  // L01~L04 페이지 맨 위, 세부 탭 구분 없이 "그 카테고리 자체"에 바로
-  // 걸어두는 게시물들이에요(예: l01로 적으면 L01 페이지 상단에 바로 보임).
-  // 아직 그런 게시물이 없으면 빈 칸을 보여주지 않고 그냥 숨겨둬요.
-  const HIDE_IF_EMPTY_CATEGORIES = ['l01','l02','l03','l04'];
-  const shownCounts = {};
-  let contentData = {};
-
-  function platformLabel(platform){
-    if(!platform) return '자세히 보기';
-    const p = platform.trim().toLowerCase();
-    if(p.includes('유튜브') || p.includes('youtube')) return '유튜브에서 보기';
-    if(p.includes('인스타') || p.includes('instagram')) return '인스타에서 보기';
-    return '자세히 보기';
-  }
 
   function escapeHtml(str){
-    return (str || '').replace(/[&<>"']/g, (c) => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[c]));
-  }
-
-  function renderCategory(cat){
-    const container = document.getElementById('dynamic-' + cat);
-    if(!container) return;
-    const items = contentData[cat] || [];
-
-    if(items.length === 0){
-      if(HIDE_IF_EMPTY_CATEGORIES.indexOf(cat) !== -1){
-        container.innerHTML = '';
-        container.style.display = 'none';
-        return;
-      }
-      container.innerHTML = '<div class="empty-state">아직 등록된 콘텐츠가 없어요. 곧 채워질 예정이에요 🌱</div>';
-      return;
-    }
-
-    container.style.display = '';
-    if(!(cat in shownCounts)) shownCounts[cat] = PAGE_SIZE;
-    const shown = items.slice(0, shownCounts[cat]);
-
-    let html = '<div class="card-grid">';
-    shown.forEach(item => {
-      const hasDetail = !!(item.detail && item.detail.trim().length > 0);
-      const detailHtml = hasDetail
-        ? '<button type="button" class="g-detail-toggle" onclick="toggleDetail(event, this)">'
-            + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>'
-            + '<span>상세 설명 보기</span>'
-          + '</button>'
-          + '<div class="g-detail-body"><div class="g-detail-body-inner"><p>' + escapeHtml(item.detail).replace(/\r?\n/g, '<br>') + '</p></div></div>'
-        : '';
-
-      html += '<a class="g-card" href="' + escapeHtml(item.link || '#') + '" target="_blank" rel="noopener">'
-        + '<span class="g-tag">' + escapeHtml(item.tag || item.platform || '') + '</span>'
-        + '<h4>' + escapeHtml(item.title) + '</h4>'
-        + '<p>' + escapeHtml(item.desc) + '</p>'
-        + detailHtml
-        + '<span class="g-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' + platformLabel(item.platform) + '</span>'
-        + '</a>';
-    });
-    html += '</div>';
-
-    if(items.length > shownCounts[cat]){
-      const remaining = items.length - shownCounts[cat];
-      html += '<button class="load-more-btn" onclick="loadMoreContent(\'' + cat + '\')">더보기 (' + remaining + '개 더)</button>';
-    }
-
-    container.innerHTML = html;
-  }
-
-  window.loadMoreContent = function(cat){
-    shownCounts[cat] = (shownCounts[cat] || PAGE_SIZE) + PAGE_SIZE;
-    renderCategory(cat);
-  };
-
-  // L01~L04처럼 세부 탭(예: L01-1, L01-2, L01-3)으로 나뉜 카테고리에서
-  // 탭 버튼을 눌렀을 때, 같은 view 안에서 버튼의 활성 표시와 콘텐츠 패널만
-  // 전환해요. 각 탭의 콘텐츠는 renderCategory가 이미 따로 채워둔 상태라
-  // 여기선 보여주고/숨기기만 하면 돼요.
-  window.switchSubTab = function(view, subtabKey, btnEl){
-    const container = document.getElementById('view-' + view);
-    if(!container) return;
-    container.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
-    if(btnEl) btnEl.classList.add('active');
-    container.querySelectorAll('.subtab-panel').forEach(p => p.classList.remove('active'));
-    const panel = document.getElementById('dynamic-' + subtabKey);
-    if(panel) panel.classList.add('active');
-    const hint = container.querySelector('.subtab-hint');
-    if(hint) hint.style.display = 'none';
-  };
-
-  // Toggle the "상세 설명" panel inside a content card without following
-  // the card's outer link (each card is an <a> pointing to YouTube/Instagram).
-  window.toggleDetail = function(e, btn){
-    e.preventDefault();
-    e.stopPropagation();
-    const body = btn.nextElementSibling;
-    if(!body) return;
-    const isOpen = body.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    const label = btn.querySelector('span');
-    if(label) label.textContent = isOpen ? '상세 설명 접기' : '상세 설명 보기';
-  };
-
-  function showLoadError(){
-    CATEGORY_KEYS.forEach(cat => {
-      const container = document.getElementById('dynamic-' + cat);
-      if(container){
-        container.innerHTML = '<div class="empty-state">아직 콘텐츠를 불러올 수 없어요. 구글 시트 연결 주소를 확인해주세요.</div>';
-      }
+    return String(str || '').replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
     });
   }
 
-  async function loadSheetContent(){
-    if(!SHEET_CSV_URL || SHEET_CSV_URL.indexOf('PASTE_YOUR') === 0){
-      showLoadError();
+  function renderLatestLinks(rows){
+    const list = document.getElementById('latest-links');
+    if(!rows.length){
+      list.innerHTML = '<div class="empty-note">아직 등록된 소식이 없어요. 곧 업데이트할게요!</div>';
       return;
     }
+    list.innerHTML = rows.map(function(row){
+      const title = escapeHtml(row['제목'] || '(제목 없음)');
+      const desc = escapeHtml(row['설명'] || '');
+      const link = row['링크'] || '#';
+      return (
+        '<a class="link-card" href="' + link + '" target="_blank" rel="noopener">' +
+          '<div class="link-text">' +
+            '<p class="link-title">' + title + '</p>' +
+            (desc ? '<p class="link-desc">' + desc + '</p>' : '') +
+          '</div>' +
+          '<span class="link-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>' +
+        '</a>'
+      );
+    }).join('');
+  }
+
+  async function loadLatestLinks(){
     try{
-      // 브라우저/구글 캐시에 걸려 예전 내용이 계속 보이는 걸 막기 위해,
-      // 매번 다른 쿼리값을 붙여서 "새로운 요청"으로 만들고 캐시를 아예 쓰지 않아요.
       const bustCacheUrl = SHEET_CSV_URL + (SHEET_CSV_URL.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
       const res = await fetch(bustCacheUrl, { cache: 'no-store' });
-      if(!res.ok) throw new Error('sheet fetch failed');
       const csvText = await res.text();
       const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-
-      const grouped = {};
-      parsed.data.forEach(row => {
-        const cat = (row['카테고리'] || row['category'] || '').trim().toLowerCase();
-        if(!cat) return;
-        if(!grouped[cat]) grouped[cat] = [];
-        grouped[cat].push({
-          tag: row['태그'] || row['tag'] || '',
-          title: row['제목'] || row['title'] || '',
-          desc: row['설명'] || row['description'] || '',
-          detail: row['상세설명'] || row['상세 설명'] || row['detail'] || '',
-          link: row['링크'] || row['link'] || '#',
-          platform: row['플랫폼'] || row['platform'] || '',
-          date: row['날짜'] || row['date'] || ''
-        });
+      const rows = (parsed.data || []).filter(function(row){
+        const cat = (row['카테고리'] || '').toString().trim().toLowerCase();
+        return cat === 'm';
       });
-
-      // 튜토리얼 성격의 카테고리(L01~L06)는 처음 배우는 사람이 순서대로
-      // 따라가야 하니 "먼저 올린 게시물이 맨 위"(오래된순)로 보여주고,
-      // 진행중인 이벤트(l09)는 뉴스처럼 최신 소식이 중요하니 "최신순"을 유지해요.
-      const NEWEST_FIRST_CATEGORIES = ['l09'];
-      Object.keys(grouped).forEach(cat => {
-        if(NEWEST_FIRST_CATEGORIES.indexOf(cat) !== -1){
-          grouped[cat].sort((a, b) => new Date(b.date) - new Date(a.date));
-        } else {
-          grouped[cat].sort((a, b) => new Date(a.date) - new Date(b.date));
-        }
-      });
-
-      contentData = grouped;
-      CATEGORY_KEYS.forEach(cat => renderCategory(cat));
+      renderLatestLinks(rows);
     }catch(err){
-      console.error('구글 시트 로딩 실패:', err);
-      showLoadError();
+      document.getElementById('latest-links').innerHTML = '<div class="empty-note">소식을 불러오지 못했어요. 잠시 후 새로고침해주세요.</div>';
     }
   }
 
-  loadSheetContent();
-
-  // ===================================================================
-  // L08 "3D프린팅 관련 기술 동향 뉴스" — 구글 시트가 아니라 실제 3D프린팅
-  // 전문 매체의 RSS 피드를 방문자 브라우저가 직접 불러와서 보여줘요.
-  // 누가 방문하든, 아무것도 따로 입력 안 해도 그 시점 최신 기사가 나와요.
-  //
-  // - 브라우저에서 RSS(XML)를 바로 fetch하면 CORS 때문에 대부분 막혀서,
-  //   rss2json.com이라는 무료 중계 서비스를 거쳐 JSON으로 받아와요.
-  // - 이 서비스는 전 세계 비회원 이용자가 같이 쓰는 공용 한도라서, 사용량이
-  //   몰리는 시간대엔 요청이 막혀서(429) 못 불러올 때가 있어요. 그래서 각
-  //   피드마다 rss2json이 실패하면 allorigins.win이라는 완전히 다른 무료
-  //   중계 서비스로 원본 RSS를 받아 직접 파싱하는 방식으로 한 번 더
-  //   시도해요. 두 서비스가 "동시에" 막히는 경우에만 그 피드가 빠지고,
-  //   네 피드 전부가 동시에 실패해야 "지금은 불러올 수 없어요"가 떠요.
-  // - 그래도 계속 안 뜨면 https://rss2json.com 에서 무료 API 키를 받아
-  //   아래 RSS2JSON_API_KEY에 넣어주세요 — 개인 키는 공용 한도와 별도라
-  //   훨씬 안정적이에요.
-  // - NEWS_FEEDS 배열에 다른 RSS 주소를 추가/삭제하면 소스가 바뀌어요.
-  // ===================================================================
-  const RSS2JSON_API_KEY = ""; // 선택: rss2json.com 무료 API 키를 넣으면 더 안정적으로 동작해요.
-  const NEWS_FEEDS = [
-    // 국내: 특정 매체 하나가 아니라 "3D프린팅" 키워드로 구글 뉴스를 검색한 결과예요.
-    // 국내 여러 언론사 기사가 섞여서 나오고, 기사마다 실제 매체명이 제목 끝에
-    // " - 매체명" 형태로 붙어 있어서 아래에서 그걸 파싱해 출처로 보여줘요.
-    { url: 'https://news.google.com/rss/search?q=3D%ED%94%84%EB%A6%B0%ED%8C%85&hl=ko&gl=KR&ceid=KR:ko', name: '국내 뉴스', parseSourceFromTitle: true },
-    { url: 'https://3dprintingindustry.com/feed/', name: '3D Printing Industry' },
-    { url: 'https://all3dp.com/feed/', name: 'ALL3DP' },
-    { url: 'https://3dprint.com/feed/', name: '3DPrint.com' }
-  ];
-  const NEWS_COUNT = 300;
-
-  function stripHtml(html){
-    return (html || '')
-      .replace(/<[^>]*>/g, ' ')
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&amp;/g, '&')
-      .replace(/&quot;/g, '"')
-      .replace(/&#0?39;/g, "'")
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
-
-  function truncateText(str, len){
-    if(!str) return '';
-    return str.length > len ? str.slice(0, len).trim() + '…' : str;
-  }
-
-  function formatNewsDate(pubDate){
-    const d = new Date(pubDate);
-    if(isNaN(d.getTime())) return '';
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
-    return d.getFullYear() + '.' + mm + '.' + dd;
-  }
-
-  // 뉴스는 한 번에 최대 NEWS_COUNT(300)개까지 모아두되, 화면엔 다른
-  // 카테고리처럼 NEWS_PAGE_SIZE개씩만 보여주고 "더보기"로 이어서 봐요.
-  const NEWS_PAGE_SIZE = 12;
-  let newsItems = [];
-  let newsFailReasons = [];
-  let newsShownCount = NEWS_PAGE_SIZE;
-  let newsIsCached = false;
-  let newsCacheSavedAt = null;
-
-  // rss2json / allorigins는 둘 다 무료 공용 서비스라 가끔 동시에 다운되거나
-  // 막힐 때가 있어요. 그럴 때 빈 화면 대신 "마지막으로 성공했던 결과"를
-  // 잠깐 보여주기 위해 브라우저 localStorage에 캐시해둬요.
-  const NEWS_CACHE_KEY = 'waysbe_news_cache_v1';
-  const NEWS_CACHE_MAX_AGE = 1000 * 60 * 60 * 24 * 3; // 3일 넘은 캐시는 신뢰하지 않음
-
-  function saveNewsCache(items){
-    try{
-      localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify({ items: items, savedAt: new Date().toISOString() }));
-    }catch(e){ /* 시크릿 모드 등으로 localStorage를 못 쓰면 조용히 무시 */ }
-  }
-
-  function loadNewsCache(){
-    try{
-      const raw = localStorage.getItem(NEWS_CACHE_KEY);
-      if(!raw) return null;
-      const parsed = JSON.parse(raw);
-      if(!parsed || !Array.isArray(parsed.items) || parsed.items.length === 0) return null;
-      const age = Date.now() - new Date(parsed.savedAt).getTime();
-      if(age > NEWS_CACHE_MAX_AGE) return null;
-      return parsed;
-    }catch(e){ return null; }
-  }
-
-  function formatCacheAgeLabel(savedAt){
-    const d = new Date(savedAt);
-    if(isNaN(d.getTime())) return '';
-    const hours = Math.round((Date.now() - d.getTime()) / (1000 * 60 * 60));
-    if(hours < 1) return '방금 전';
-    if(hours < 24) return hours + '시간 전';
-    return Math.round(hours / 24) + '일 전';
-  }
-
-  function renderNewsFeed(){
-    const container = document.getElementById('dynamic-l08');
-    if(!container) return;
-
-    if(newsItems.length === 0){
-      const detail = (newsFailReasons && newsFailReasons.length)
-        ? '<p class="mono" style="font-size:11.5px; color:var(--ink-soft); margin-top:14px; line-height:1.7; opacity:0.75;">'
-          + escapeHtml(newsFailReasons.join(' · ')) + '</p>'
-        : '';
-      container.innerHTML = '<div class="empty-state">지금은 최신 뉴스를 불러올 수 없어요. 새로고침하시거나 잠시 후 다시 시도해주세요 🌱' + detail + '</div>';
-      return;
-    }
-
-    let html = '';
-    if(newsIsCached){
-      html += '<p class="mono" style="font-size:12px; color:var(--ink-soft); margin:0 0 16px; opacity:0.8;">'
-        + '⚠ 지금은 실시간 업데이트가 잠시 안 되고 있어서, 최근에 저장해둔 뉴스를 보여드리고 있어요 (기준: '
-        + escapeHtml(formatCacheAgeLabel(newsCacheSavedAt)) + '). 새로고침하면 다시 시도해요.</p>';
-    }
-
-    const shown = newsItems.slice(0, newsShownCount);
-    html += '<div class="card-grid">';
-    shown.forEach(item => {
-      html += '<a class="g-card" href="' + escapeHtml(item.link || '#') + '" target="_blank" rel="noopener">'
-        + '<span class="g-tag">' + escapeHtml(item.source) + '</span>'
-        + '<h4>' + escapeHtml(item.title) + '</h4>'
-        + (item.excerpt ? '<p>' + escapeHtml(item.excerpt) + '</p>' : '')
-        + '<span class="g-play">' + (item.dateLabel ? escapeHtml(item.dateLabel) + ' · ' : '') + '원문 보기 '
-        + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>'
-        + '</span>'
-        + '</a>';
-    });
-    html += '</div>';
-
-    if(newsItems.length > newsShownCount){
-      const remaining = newsItems.length - newsShownCount;
-      html += '<button class="load-more-btn" onclick="loadMoreNews()">더보기 (' + remaining + '개 더)</button>';
-    }
-
-    container.innerHTML = html;
-  }
-
-  window.loadMoreNews = function(){
-    newsShownCount += NEWS_PAGE_SIZE;
-    renderNewsFeed();
-  };
-
-  // Google 뉴스 검색 피드는 제목 끝에 " - 매체명"이 붙어 나와요.
-  // 그 부분을 잘라서 카드의 "출처" 태그로 쓰고, 제목에서는 떼어내요.
-  function splitTitleSource(rawTitle, fallbackSource){
-    const idx = rawTitle.lastIndexOf(' - ');
-    if(idx === -1) return { title: rawTitle, source: fallbackSource };
-    const source = rawTitle.slice(idx + 3).trim();
-    const title = rawTitle.slice(0, idx).trim();
-    return { title: title || rawTitle, source: source || fallbackSource };
-  }
-
-  // 무료 중계 서비스(rss2json, allorigins)는 가끔 요청을 받고도 응답을
-  // 영영 안 주는 경우가 있어요(에러도 아니고 그냥 멈춰버림). fetch()엔
-  // 기본 제한시간이 없어서, 그런 요청 하나가 나머지 소스까지 전부
-  // "불러오는 중..."에 묶어두는 문제가 생겨요. 그래서 일정 시간(8초) 안에
-  // 응답이 없으면 그 요청만 실패 처리하고 넘어가도록 감싸줘요.
-  function fetchWithTimeout(url, timeoutMs){
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
-    return fetch(url, { signal: controller.signal })
-      .finally(() => clearTimeout(timer))
-      .catch(err => {
-        if(err.name === 'AbortError') throw new Error('timeout');
-        throw err;
-      });
-  }
-
-  // rss2json.com 무료(비회원) 사용량은 전 세계 이용자가 같이 나눠 쓰는 공용
-  // 한도라서, 사용량이 몰리는 시간대엔 이 요청 자체가 429(너무 많은 요청)로
-  // 막힐 수 있어요. 그래서 rss2json이 실패하면 완전히 다른 무료 중계
-  // 서비스(allorigins)로 원본 RSS(XML)를 받아와 직접 파싱하는 방식으로
-  // 한 번 더 시도해요 — 두 서비스가 동시에 막힐 확률은 훨씬 낮아요.
-  function fetchViaRss2Json(feed){
-    // 주의: rss2json 무료(비회원) 등급은 "count" 같은 부가 파라미터가 붙으면
-    // 422 오류를 돌려줘요 — API 키가 있을 때만 붙이고, 개수 제한은 받아온
-    // 뒤 자바스크립트에서 직접 잘라요(.slice).
-    const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed.url)
-      + (RSS2JSON_API_KEY ? '&api_key=' + encodeURIComponent(RSS2JSON_API_KEY) + '&count=8' : '');
-    return fetchWithTimeout(apiUrl, 8000)
-      .then(res => {
-        if(!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
-      })
-      .then(json => {
-        if(json.status !== 'ok' || !Array.isArray(json.items)){
-          throw new Error(json.message || ('status=' + json.status));
-        }
-        return json.items.slice(0, 100).map(it => ({
-          title: it.title || '',
-          link: it.link || '#',
-          description: it.description || it.content || '',
-          pubDate: it.pubDate || ''
-        }));
-      })
-      .catch(err => { throw new Error('rss2json: ' + err.message); });
-  }
-
-  function fetchViaAllOrigins(feed){
-    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(feed.url);
-    return fetchWithTimeout(proxyUrl, 8000)
-      .then(res => {
-        if(!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      })
-      .then(xmlText => {
-        const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
-        const itemEls = Array.from(doc.querySelectorAll('item'));
-        if(itemEls.length === 0) throw new Error('no items parsed');
-        return itemEls.slice(0, 100).map(el => {
-          const get = (tag) => { const n = el.querySelector(tag); return n ? n.textContent : ''; };
-          return {
-            title: get('title'),
-            link: get('link'),
-            description: get('description'),
-            pubDate: get('pubDate')
-          };
-        });
-      })
-      .catch(err => { throw new Error('allorigins: ' + err.message); });
-  }
-
-  function fetchFeedRaw(feed){
-    return fetchViaRss2Json(feed).catch(err1 =>
-      fetchViaAllOrigins(feed).catch(err2 => {
-        throw new Error(feed.name + ' — ' + err1.message + ', ' + err2.message);
-      })
-    );
-  }
-
-  function toNewsCard(rawItem, feed){
-    const rawTitle = stripHtml(rawItem.title || '');
-    let title = rawTitle, source = feed.name, excerpt = '';
-    if(feed.parseSourceFromTitle){
-      const split = splitTitleSource(rawTitle, feed.name);
-      title = split.title;
-      source = split.source;
-      // 구글 뉴스 검색 피드는 본문 요약을 안 주고 출처 링크만 담고 있어서
-      // 요약 문단은 만들지 않고 제목 + 출처 + 링크만 보여줘요.
-    } else {
-      excerpt = truncateText(stripHtml(rawItem.description || ''), 110);
-    }
-    return {
-      title: title,
-      link: rawItem.link || '#',
-      excerpt: excerpt,
-      dateLabel: formatNewsDate(rawItem.pubDate),
-      pubDate: rawItem.pubDate,
-      source: source
-    };
-  }
-
-  async function loadNewsFeed(){
-    const container = document.getElementById('dynamic-l08');
-    if(!container) return;
-    try{
-      const results = await Promise.allSettled(
-        NEWS_FEEDS.map(feed => fetchFeedRaw(feed).then(rawItems => rawItems.map(it => toNewsCard(it, feed))))
-      );
-
-      let items = [];
-      const failReasons = [];
-      results.forEach(r => {
-        if(r.status === 'fulfilled') items = items.concat(r.value);
-        else failReasons.push(r.reason && r.reason.message ? r.reason.message : String(r.reason));
-      });
-      if(failReasons.length > 0){
-        console.warn('뉴스 피드 일부 소스를 불러오지 못했어요:', failReasons);
-      }
-
-      items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-      newsFailReasons = failReasons;
-
-      if(items.length > 0){
-        newsItems = items.slice(0, NEWS_COUNT);
-        newsIsCached = false;
-        saveNewsCache(newsItems);
-      } else {
-        const cached = loadNewsCache();
-        if(cached){
-          newsItems = cached.items;
-          newsIsCached = true;
-          newsCacheSavedAt = cached.savedAt;
-        } else {
-          newsItems = [];
-          newsIsCached = false;
-        }
-      }
-      renderNewsFeed();
-    }catch(err){
-      console.error('뉴스 피드 로딩 실패:', err);
-      const cached = loadNewsCache();
-      if(cached){
-        newsItems = cached.items;
-        newsIsCached = true;
-        newsCacheSavedAt = cached.savedAt;
-        newsFailReasons = [err.message || String(err)];
-        renderNewsFeed();
-      } else {
-        container.innerHTML = '<div class="empty-state">지금은 최신 뉴스를 불러올 수 없어요. 새로고침하시거나 잠시 후 다시 시도해주세요 🌱'
-          + '<p class="mono" style="font-size:11.5px; color:var(--ink-soft); margin-top:14px; opacity:0.75;">' + escapeHtml(err.message || String(err)) + '</p></div>';
-      }
-    }
-  }
-
-  loadNewsFeed();
-
-  // Nozzle-trace accent under "모르겠다면."
-  (function(){
-    const accent = document.querySelector('h1 .accent');
-    if (!accent || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const svgNS = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('width', '100%'); svg.setAttribute('height', '14');
-    svg.style.position = 'absolute'; svg.style.left = '0'; svg.style.bottom = '-6px'; svg.style.overflow = 'visible';
-    const path = document.createElementNS(svgNS, 'path');
-    const w = accent.offsetWidth || 200;
-    path.setAttribute('d', `M2,8 Q ${w/2},14 ${w-2},7`);
-    path.setAttribute('stroke', '#E2622A'); path.setAttribute('stroke-width', '3');
-    path.setAttribute('fill', 'none'); path.setAttribute('stroke-linecap', 'round');
-    path.style.strokeDasharray = 300; path.style.strokeDashoffset = 300;
-    path.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(.4,0,.2,1) 0.35s';
-    svg.appendChild(path);
-    accent.style.position = 'relative';
-    accent.appendChild(svg);
-    requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ path.style.strokeDashoffset = '0'; }); });
-  })();
+  loadLatestLinks();
 </script>
 
 </body>
