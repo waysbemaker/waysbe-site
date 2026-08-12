@@ -140,6 +140,13 @@
     margin: 0 0 14px 2px;
   }
   .section-label .dot{ width:9px; height:9px; border-radius:50%; background: var(--ember); flex-shrink:0; }
+  .section-label .highlight{
+    background: #F5FF3D;
+    padding: 2px 6px;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
 
   .link-list{
     display:flex; flex-direction:column; gap: 10px;
@@ -302,7 +309,7 @@
     </a>
   </div>
 
-  <div class="section-label"><span class="dot"></span>영상에 소개된 링크 바로가기</div>
+  <div class="section-label"><span class="dot"></span><span class="highlight">영상에 소개된 링크 바로가기</span></div>
   <div class="link-list" id="latest-links">
     <div class="empty-note">불러오는 중…</div>
   </div>
