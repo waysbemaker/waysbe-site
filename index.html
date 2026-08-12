@@ -268,14 +268,13 @@
 
 <script>
   // ============================================================
-  //  최신 소식 / 프로모션 링크 목록은 구글 시트에서 불러옵니다.
-  //  waysbe_content_template 시트에서 "카테고리" 열 값이 'm' 인
-  //  행들을 불러와서, 시트에 "가장 나중에 추가한 행"이 맨 위에
-  //  오도록 순서를 뒤집어 보여줍니다 (= 새 글을 시트 맨 아래에
-  //  추가하면 자동으로 목록 맨 위에 뜸). 번호는 자동으로 매겨집니다.
-  //  사용하는 열: 카테고리(=m), 제목, 설명, 링크
+  //  최신 소식 / 프로모션 링크 목록은 구글 시트 전용 탭에서
+  //  불러옵니다. 시트에 "가장 나중에 추가한 행"이 맨 위에 오도록
+  //  순서를 뒤집어 보여줍니다 (= 새 글을 시트 맨 아래에 추가하면
+  //  자동으로 목록 맨 위에 뜸). 번호는 자동으로 매겨집니다.
+  //  사용하는 열: 제목, 설명, 링크
   // ============================================================
-  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=1563310562&single=true&output=csv";
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=22051895&single=true&output=csv";
 
   function escapeHtml(str){
     return String(str || '').replace(/[&<>"']/g, function(c){
@@ -316,8 +315,7 @@
       const csvText = await res.text();
       const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
       const rows = (parsed.data || []).filter(function(row){
-        const cat = (row['카테고리'] || '').toString().trim().toLowerCase();
-        return cat === 'm';
+        return (row['제목'] || '').toString().trim() !== '';
       }).reverse();
       renderLatestLinks(rows);
     }catch(err){
