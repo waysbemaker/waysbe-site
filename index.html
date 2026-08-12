@@ -61,18 +61,27 @@
     text-align:center;
     margin-bottom: 32px;
   }
+  .logo-circle{
+    width: 92px; height: 92px;
+    border-radius: 50%;
+    background: #fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 18px rgba(28,27,26,0.15);
+    padding: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
   .logo-img{
-    width: 220px;
-    max-width: 72%;
-    height: auto;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
   .profile p{
-    margin:0; color: var(--ink-soft); font-size: 14.5px; line-height:1.5;
+    margin:0; color: var(--ink-soft); font-size: 14.5px; line-height:1.6;
     max-width: 360px;
   }
 
@@ -151,9 +160,11 @@
 <div class="wrap">
 
   <div class="profile">
-    <img class="logo-img" src="./assets/logo.png" alt="Waysbe Maker">
+    <div class="logo-circle">
+      <img class="logo-img" src="./assets/logo.png" alt="Waysbe Maker">
+    </div>
     <h1 class="sr-only">Waysbe Maker</h1>
-    <p>3D프린팅 메이커 웨이즈비예요. 아래에서 원하는 링크를 눌러 들어가세요 🙂</p>
+    <p>처음인 사람도 쉽게! 3D프린팅, Waysbe Maker와 함께 해요!<br>하단에서 원하는 링크를 눌러 들어가세요!</p>
   </div>
 
   <div class="core-links">
@@ -161,35 +172,35 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>
       <div>
         <div class="core-label">Instagram</div>
-        <div class="core-caption">일상 & 신제품 소식</div>
+        <div class="core-caption">메이커의 일상 & 3D프린팅 꿀팁</div>
       </div>
     </a>
     <a class="core-link" href="https://youtube.com/@waysbe_maker_youtube" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.5 9.3v5.4l4.7-2.7z" fill="currentColor" stroke="none"></path></svg>
       <div>
         <div class="core-label">YouTube</div>
-        <div class="core-caption">튜토리얼 영상</div>
+        <div class="core-caption">3D프린팅 관련 더 자세한 튜토리얼을 보고 싶다면!</div>
       </div>
     </a>
     <a class="core-link" href="https://alwaysbe.gumroad.com/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l2-5h14l2 5"></path><path d="M3 9h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="M8 13a3 3 0 0 0 6 0"></path></svg>
       <div>
         <div class="core-label">Gumroad</div>
-        <div class="core-caption">무료·유료 파일</div>
+        <div class="core-caption">Maker Waysbe 제작, 3D프린팅을 쉽게 해주는 무료,유료 프로그램 다운로드</div>
       </div>
     </a>
     <a class="core-link" href="https://makerworld.com/ko/@waysbe" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path><path d="M12 13v8"></path></svg>
       <div>
         <div class="core-label">MakerWorld</div>
-        <div class="core-caption">출력 파일 모델</div>
+        <div class="core-caption">무료 출력 파일 모델</div>
       </div>
     </a>
     <a class="core-link" href="https://cults3d.com/en/users/waysbemaker" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2z"></path><path d="M12 2v20"></path><path d="M4 6.5l8 4.5 8-4.5"></path></svg>
       <div>
         <div class="core-label">Cults3D</div>
-        <div class="core-caption">출력 파일 모델</div>
+        <div class="core-caption">유료 출력 파일 모델</div>
       </div>
     </a>
     <a class="core-link wide" href="./starter/">
@@ -201,13 +212,13 @@
     </a>
   </div>
 
-  <div class="section-label"><span class="dot"></span>최신 소식 & 링크</div>
+  <div class="section-label"><span class="dot"></span>영상에 소개된 링크 바로가기</div>
   <div class="link-list" id="latest-links">
     <div class="empty-note">불러오는 중…</div>
   </div>
 
   <footer>
-    Waysbe Maker · 3D프린팅 메이커
+    Waysbe Maker
   </footer>
 
 </div>
