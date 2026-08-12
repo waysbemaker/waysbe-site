@@ -61,19 +61,15 @@
     text-align:center;
     margin-bottom: 32px;
   }
-  .avatar{
-    width: 84px; height: 84px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--ember), var(--moss));
-    color: #fff;
-    display:flex; align-items:center; justify-content:center;
-    font-size: 26px; font-weight:700;
-    font-family:'Space Grotesk', sans-serif;
-    box-shadow: 0 6px 18px rgba(28,27,26,0.15);
-    margin-bottom: 14px;
+  .logo-img{
+    width: 220px;
+    max-width: 72%;
+    height: auto;
+    margin-bottom: 10px;
   }
-  .profile h1{
-    font-size: 24px; margin: 0 0 6px;
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
   .profile p{
     margin:0; color: var(--ink-soft); font-size: 14.5px; line-height:1.5;
@@ -155,8 +151,8 @@
 <div class="wrap">
 
   <div class="profile">
-    <div class="avatar">WM</div>
-    <h1>Waysbe Maker</h1>
+    <img class="logo-img" src="./assets/logo.png" alt="Waysbe Maker">
+    <h1 class="sr-only">Waysbe Maker</h1>
     <p>3D프린팅 메이커 웨이즈비예요. 아래에서 원하는 링크를 눌러 들어가세요 🙂</p>
   </div>
 
