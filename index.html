@@ -111,17 +111,17 @@
   .core-link svg{ width:20px; height:20px; flex-shrink:0; color: var(--ember); }
   .core-link .core-label{ font-weight:600; font-size: 14.5px; }
   .core-link .core-caption{ font-size: 11.5px; color: var(--ink-soft); margin-top:1px; }
-  .core-link.wide{ grid-column: 1 / -1; background: var(--moss-soft); border-color: var(--moss-soft); }
-  .core-link.wide svg{ color: var(--moss); }
+  .core-link.accent{ background: var(--moss-soft); border-color: var(--moss-soft); }
+  .core-link.accent svg{ color: var(--moss); }
 
   /* ---- latest links section ---- */
   .section-label{
-    display:flex; align-items:center; gap:8px;
-    font-size: 13px; font-weight:600; color: var(--ink-soft);
-    text-transform: uppercase; letter-spacing:0.06em;
+    display:flex; align-items:center; gap:9px;
+    font-size: 18px; font-weight:700; color: var(--ink);
+    font-family:'Space Grotesk', sans-serif;
     margin: 0 0 14px 2px;
   }
-  .section-label .dot{ width:7px; height:7px; border-radius:50%; background: var(--ember); }
+  .section-label .dot{ width:9px; height:9px; border-radius:50%; background: var(--ember); flex-shrink:0; }
 
   .link-list{
     display:flex; flex-direction:column; gap: 10px;
@@ -222,7 +222,7 @@
         <div class="core-caption">유료 출력 파일 모델</div>
       </div>
     </a>
-    <a class="core-link wide" href="./starter/">
+    <a class="core-link accent" href="./starter/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
       <div>
         <div class="core-label">Waysbe Starter — 3D프린팅 처음 시작하기</div>
@@ -317,10 +317,10 @@
   //  "방문 횟수" 기준이라, 정확한 순수 방문자 수와는 조금 달라요.
   // ============================================================
   (function(){
-    const NAMESPACE = 'waysbemaker-com';
     function pad(n){ return n < 10 ? '0' + n : '' + n; }
     const now = new Date();
-    const todayKey = 'visits-' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+    const todayKey = 'waysbemaker-com-' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+    const totalKey = 'waysbemaker-com-total';
 
     function setStat(id, value){
       const el = document.getElementById(id);
@@ -328,15 +328,18 @@
       el.textContent = (typeof value === 'number' && !isNaN(value)) ? value.toLocaleString('ko-KR') : '–';
     }
 
-    fetch('https://api.countapi.xyz/hit/' + NAMESPACE + '/' + todayKey)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ setStat('stat-today', d.value); })
-      .catch(function(){ setStat('stat-today', null); });
+    function hit(key){
+      const url = 'https://hitscounter.dev/api/hit?url=' + encodeURIComponent(key) + '&label=visits';
+      return fetch(url, { mode: 'cors', cache: 'no-store' })
+        .then(function(r){ return r.text(); })
+        .then(function(svgText){
+          const m = svgText.match(/aria-label="[^:]*:\s*([\d,]+)/);
+          return m ? parseInt(m[1].replace(/,/g, ''), 10) : NaN;
+        });
+    }
 
-    fetch('https://api.countapi.xyz/hit/' + NAMESPACE + '/visits-total')
-      .then(function(r){ return r.json(); })
-      .then(function(d){ setStat('stat-total', d.value); })
-      .catch(function(){ setStat('stat-total', null); });
+    hit(todayKey).then(function(v){ setStat('stat-today', v); }).catch(function(){ setStat('stat-today', null); });
+    hit(totalKey).then(function(v){ setStat('stat-total', v); }).catch(function(){ setStat('stat-total', null); });
   })();
 </script>
 
