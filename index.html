@@ -65,6 +65,7 @@
     width: 92px; height: 92px;
     border-radius: 50%;
     background: #fff;
+    border: 3px solid var(--ember);
     display:flex; align-items:center; justify-content:center;
     box-shadow: 0 6px 18px rgba(28,27,26,0.15);
     padding: 12px;
@@ -150,8 +151,26 @@
   }
 
   footer{
-    text-align:center; margin-top: 48px;
+    text-align:center; margin-top: 20px;
     font-size: 12.5px; color: var(--ink-soft);
+  }
+
+  .visitor-stats{
+    display:flex; align-items:center; justify-content:center;
+    gap: 18px;
+    margin-top: 40px;
+  }
+  .stat-item{
+    display:flex; flex-direction:column; align-items:center; gap: 2px;
+  }
+  .stat-item .stat-num{
+    font-size: 17px; font-weight:600; color: var(--ink);
+  }
+  .stat-item .stat-label{
+    font-size: 11px; color: var(--ink-soft);
+  }
+  .stat-divider{
+    width:1px; height: 26px; background: var(--line);
   }
 </style>
 </head>
@@ -217,6 +236,18 @@
     <div class="empty-note">불러오는 중…</div>
   </div>
 
+  <div class="visitor-stats" id="visitor-stats">
+    <div class="stat-item">
+      <span class="stat-num mono" id="stat-today">–</span>
+      <span class="stat-label">오늘 방문자</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num mono" id="stat-total">–</span>
+      <span class="stat-label">누적 방문자</span>
+    </div>
+  </div>
+
   <footer>
     Waysbe Maker
   </footer>
@@ -278,6 +309,35 @@
   }
 
   loadLatestLinks();
+
+  // ============================================================
+  //  방문자 카운터 (무료 카운터 API, 별도 가입/서버 불필요)
+  //  "오늘"은 날짜별로 다른 키를 써서, 자정이 지나면 자동으로
+  //  0부터 다시 세어져요. 참고: 새로고침/재방문마다 1씩 늘어나는
+  //  "방문 횟수" 기준이라, 정확한 순수 방문자 수와는 조금 달라요.
+  // ============================================================
+  (function(){
+    const NAMESPACE = 'waysbemaker-com';
+    function pad(n){ return n < 10 ? '0' + n : '' + n; }
+    const now = new Date();
+    const todayKey = 'visits-' + now.getFullYear() + pad(now.getMonth() + 1) + pad(now.getDate());
+
+    function setStat(id, value){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.textContent = (typeof value === 'number' && !isNaN(value)) ? value.toLocaleString('ko-KR') : '–';
+    }
+
+    fetch('https://api.countapi.xyz/hit/' + NAMESPACE + '/' + todayKey)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ setStat('stat-today', d.value); })
+      .catch(function(){ setStat('stat-today', null); });
+
+    fetch('https://api.countapi.xyz/hit/' + NAMESPACE + '/visits-total')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ setStat('stat-total', d.value); })
+      .catch(function(){ setStat('stat-total', null); });
+  })();
 </script>
 
 </body>
