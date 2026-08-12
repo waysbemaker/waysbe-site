@@ -61,6 +61,11 @@
     text-align:center;
     margin-bottom: 32px;
   }
+  .avatar-wrap{
+    position: relative;
+    width: 92px; height: 92px;
+    margin-bottom: 20px;
+  }
   .logo-circle{
     width: 92px; height: 92px;
     border-radius: 50%;
@@ -70,13 +75,26 @@
     box-shadow: 0 6px 18px rgba(28,27,26,0.15);
     padding: 12px;
     overflow: hidden;
-    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
   }
   .logo-img{
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
+  .wing{
+    position: absolute;
+    top: 50%;
+    width: 52px; height: 66px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 0;
+    filter: drop-shadow(0 3px 6px rgba(28,27,26,0.12));
+  }
+  .wing svg{ width:100%; height:100%; display:block; overflow:visible; }
+  .wing-left{ right: 100%; margin-right: -10px; }
+  .wing-right{ left: 100%; margin-left: -10px; transform: translateY(-50%) scaleX(-1); }
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
@@ -162,6 +180,21 @@
     padding: 24px 0;
   }
 
+  .pagination{
+    display:flex; align-items:center; justify-content:center;
+    gap: 6px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .page-btn{
+    min-width: 30px; height: 30px; padding: 0 6px;
+    border-radius: 8px; border: 1px solid var(--line);
+    background: var(--paper-raised); color: var(--ink-soft);
+    font-family:'JetBrains Mono', monospace; font-size: 12.5px;
+    cursor: pointer; transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .page-btn:hover:not(:disabled){ border-color: var(--ember); color: var(--ink); }
+  .page-btn.active{ background: var(--ember); border-color: var(--ember); color: #fff; font-weight:600; }
+  .page-btn:disabled{ opacity: 0.35; cursor: default; }
+
   footer{
     text-align:center; margin-top: 20px;
     font-size: 12.5px; color: var(--ink-soft);
@@ -191,8 +224,28 @@
 <div class="wrap">
 
   <div class="profile">
-    <div class="logo-circle">
-      <img class="logo-img" src="./assets/logo.png" alt="Waysbe Maker">
+    <div class="avatar-wrap">
+      <span class="wing wing-left" aria-hidden="true">
+        <svg viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M56,72 C44,48 36,18 40,4 C28,20 30,50 44,64 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M56,72 C40,54 24,26 22,10 C12,28 20,52 38,66 Z" fill="var(--ember-soft)" stroke="var(--ember)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M56,72 C38,60 14,42 8,24 C2,40 12,58 30,70 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M56,72 C36,66 10,54 2,42 C0,54 10,66 28,74 Z" fill="var(--ember-soft)" stroke="var(--ember)" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M56,72 C34,72 12,66 4,60 C4,68 16,76 30,78 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="logo-circle">
+        <img class="logo-img" src="./assets/logo.png" alt="Waysbe Maker">
+      </div>
+      <span class="wing wing-right" aria-hidden="true">
+        <svg viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M56,72 C44,48 36,18 40,4 C28,20 30,50 44,64 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M56,72 C40,54 24,26 22,10 C12,28 20,52 38,66 Z" fill="var(--ember-soft)" stroke="var(--ember)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M56,72 C38,60 14,42 8,24 C2,40 12,58 30,70 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M56,72 C36,66 10,54 2,42 C0,54 10,66 28,74 Z" fill="var(--ember-soft)" stroke="var(--ember)" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M56,72 C34,72 12,66 4,60 C4,68 16,76 30,78 Z" fill="#FFFFFF" stroke="var(--ember)" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </span>
     </div>
     <h1 class="sr-only">Waysbe Maker</h1>
     <p>처음인 사람도 쉽게! 3D프린팅, Waysbe Maker와 함께 해요!<br>하단에서 원하는 링크를 눌러 들어가세요!</p>
@@ -247,6 +300,7 @@
   <div class="link-list" id="latest-links">
     <div class="empty-note">불러오는 중…</div>
   </div>
+  <div class="pagination" id="latest-pagination"></div>
 
   <div class="visitor-stats" id="visitor-stats">
     <div class="stat-item">
@@ -277,6 +331,9 @@
   //  사용하는 열: 제목, 설명, 링크
   // ============================================================
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=22051895&single=true&output=csv";
+  const PAGE_SIZE = 20;
+  let allLatestRows = [];
+  let currentPage = 1;
 
   function escapeHtml(str){
     return String(str || '').replace(/[&<>"']/g, function(c){
@@ -310,6 +367,29 @@
     }).join('');
   }
 
+  function renderPagination(){
+    const el = document.getElementById('latest-pagination');
+    const totalPages = Math.ceil(allLatestRows.length / PAGE_SIZE);
+    if(totalPages <= 1){ el.innerHTML = ''; return; }
+
+    let html = '<button type="button" class="page-btn" onclick="goToLatestPage(' + (currentPage - 1) + ')"' + (currentPage === 1 ? ' disabled' : '') + '>‹</button>';
+    for(let p = 1; p <= totalPages; p++){
+      html += '<button type="button" class="page-btn' + (p === currentPage ? ' active' : '') + '" onclick="goToLatestPage(' + p + ')">' + p + '</button>';
+    }
+    html += '<button type="button" class="page-btn" onclick="goToLatestPage(' + (currentPage + 1) + ')"' + (currentPage === totalPages ? ' disabled' : '') + '>›</button>';
+    el.innerHTML = html;
+  }
+
+  function goToLatestPage(page){
+    const totalPages = Math.ceil(allLatestRows.length / PAGE_SIZE);
+    if(page < 1 || page > totalPages) return;
+    currentPage = page;
+    const start = (page - 1) * PAGE_SIZE;
+    renderLatestLinks(allLatestRows.slice(start, start + PAGE_SIZE));
+    renderPagination();
+    document.getElementById('latest-links').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   async function loadLatestLinks(){
     try{
       const bustCacheUrl = SHEET_CSV_URL + (SHEET_CSV_URL.indexOf('?') === -1 ? '?' : '&') + '_=' + Date.now();
@@ -322,8 +402,10 @@
       // 번호는 시트의 절대 위치를 기준으로 매겨서(맨 아래 행=1번),
       // 새 글이 추가돼도 기존 글의 번호는 바뀌지 않도록 합니다.
       filtered.forEach(function(row, idx){ row.__num = idx + 1; });
-      const rows = filtered.reverse();
-      renderLatestLinks(rows);
+      allLatestRows = filtered.reverse();
+      currentPage = 1;
+      renderLatestLinks(allLatestRows.slice(0, PAGE_SIZE));
+      renderPagination();
     }catch(err){
       document.getElementById('latest-links').innerHTML = '<div class="empty-note">소식을 불러오지 못했어요. 잠시 후 새로고침해주세요.</div>';
     }
