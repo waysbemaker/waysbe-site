@@ -139,6 +139,18 @@
     box-shadow: 0 8px 20px rgba(28,27,26,0.08);
     border-color: var(--ember);
   }
+  .link-card .link-main{ display:flex; align-items:center; gap:12px; min-width:0; }
+  .link-card .link-num{
+    flex-shrink:0;
+    width:26px; height:26px;
+    border-radius:50%;
+    background: var(--ember-soft);
+    color: var(--ember);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+  }
   .link-card .link-text{ min-width:0; }
   .link-card .link-title{ font-weight:600; font-size: 15px; margin:0 0 3px; }
   .link-card .link-desc{ font-size: 12.5px; color: var(--ink-soft); margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -225,8 +237,8 @@
     <a class="core-link accent" href="./starter/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
       <div>
-        <div class="core-label">Waysbe Starter — 3D프린팅 처음 시작하기</div>
-        <div class="core-caption">3D프린터 처음 만난 분들을 위한 가이드</div>
+        <div class="core-label">Waysbe Starter</div>
+        <div class="core-caption">3D프린팅이 처음이야?</div>
       </div>
     </a>
   </div>
@@ -258,8 +270,9 @@
   // ============================================================
   //  최신 소식 / 프로모션 링크 목록은 구글 시트에서 불러옵니다.
   //  waysbe_content_template 시트에서 "카테고리" 열 값이 'm' 인
-  //  행들을 시트에 적힌 순서 그대로(위에서 아래) 보여줍니다.
-  //  → 순서를 바꾸고 싶으면 시트에서 행을 드래그해서 옮기면 됩니다.
+  //  행들을 불러와서, 시트에 "가장 나중에 추가한 행"이 맨 위에
+  //  오도록 순서를 뒤집어 보여줍니다 (= 새 글을 시트 맨 아래에
+  //  추가하면 자동으로 목록 맨 위에 뜸). 번호는 자동으로 매겨집니다.
   //  사용하는 열: 카테고리(=m), 제목, 설명, 링크
   // ============================================================
   const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR6aX1530n2G9UAepQXmsRjPw43E7lyJaMSKKbawUX5KsicN0X7LjlVwC9Gh8RZPSISNVf7p8B1VPQ9/pub?gid=1563310562&single=true&output=csv";
@@ -276,15 +289,19 @@
       list.innerHTML = '<div class="empty-note">아직 등록된 소식이 없어요. 곧 업데이트할게요!</div>';
       return;
     }
-    list.innerHTML = rows.map(function(row){
+    list.innerHTML = rows.map(function(row, i){
       const title = escapeHtml(row['제목'] || '(제목 없음)');
       const desc = escapeHtml(row['설명'] || '');
       const link = row['링크'] || '#';
+      const num = i < 9 ? '0' + (i + 1) : String(i + 1);
       return (
         '<a class="link-card" href="' + link + '" target="_blank" rel="noopener">' +
-          '<div class="link-text">' +
-            '<p class="link-title">' + title + '</p>' +
-            (desc ? '<p class="link-desc">' + desc + '</p>' : '') +
+          '<div class="link-main">' +
+            '<span class="link-num mono">' + num + '</span>' +
+            '<div class="link-text">' +
+              '<p class="link-title">' + title + '</p>' +
+              (desc ? '<p class="link-desc">' + desc + '</p>' : '') +
+            '</div>' +
           '</div>' +
           '<span class="link-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>' +
         '</a>'
@@ -301,7 +318,7 @@
       const rows = (parsed.data || []).filter(function(row){
         const cat = (row['카테고리'] || '').toString().trim().toLowerCase();
         return cat === 'm';
-      });
+      }).reverse();
       renderLatestLinks(rows);
     }catch(err){
       document.getElementById('latest-links').innerHTML = '<div class="empty-note">소식을 불러오지 못했어요. 잠시 후 새로고침해주세요.</div>';
